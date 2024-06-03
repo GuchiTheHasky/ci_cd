@@ -7,6 +7,10 @@ on:
 jobs:
   comment-with-actions:
     runs-on: ubuntu-latest
+
+    env: 
+      GIT_TOKEN: ${{ secrets.GIT_TOKEN }}
+    
     steps: 
       - name: "dump github context"
         run: echo '${{ toJSON(github.event) }}' | jq 
@@ -20,7 +24,6 @@ jobs:
             This is a multi-line test comment
             - With GitHub **Markdown** :sparkles:
             - Created by [create-or-update-comment][1]
-
             [1]: https://github.com/peter-evans/create-or-update-comment
           reactions: '+1'
 
@@ -40,8 +43,7 @@ jobs:
             heart
             hooray
             laugh
-        # env: 
-        #   GIT_TOKEN: ${{ secrets.GIT_TOKEN }}
+      
 
 
 # echo '${{ toJSON(github.event) }}' перетворює контекст події GitHub (яка викликала цей workflow) у формат JSON
