@@ -13,18 +13,35 @@ jobs:
         shell: bash
 
       - name: Create comment
-        uses: peter-evans/create-or-update-comment@v3
-        with: 
-          issue-number: '${{ github.event.issue.number }}'
+        uses: peter-evans/create-or-update-comment@v4
+        with:
+          issue-number: 1
           body: |
             This is a multi-line test comment
             - With GitHub **Markdown** :sparkles:
-            - Created by [create-or-update-comment] [1]
+            - Created by [create-or-update-comment][1]
 
             [1]: https://github.com/peter-evans/create-or-update-comment
           reactions: '+1'
-        env: 
-          GIT_TOKEN: ${{ secrets.GIT_TOKEN }}
+
+      - name: Update comment
+        uses: peter-evans/create-or-update-comment@v4
+        with:
+          comment-id: 557858210
+          body: |
+            **Edit:** Some additional info
+          reactions: eyes
+
+      - name: Add reactions
+        uses: peter-evans/create-or-update-comment@v4
+        with:
+          comment-id: 557858210
+          reactions: |
+            heart
+            hooray
+            laugh
+        # env: 
+        #   GIT_TOKEN: ${{ secrets.GIT_TOKEN }}
 
 
 # echo '${{ toJSON(github.event) }}' перетворює контекст події GitHub (яка викликала цей workflow) у формат JSON
