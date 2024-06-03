@@ -12,7 +12,16 @@ jobs:
         run: echo '${{ toJSON(github.event) }}' | jq 
         shell: bash
 
+      - name: Create comment
+        uses: peter-evans/create-or-update-comment@v1
+        with: 
+          issue-number: '${{ github.event.issue.number }}'
+          body: |
+            This is a multi-line test comment
+            - With GitHub **Markdown** :sparkles:
+            - Created by [create-or-update-comment] [1]
+
 
 # echo '${{ toJSON(github.event) }}' перетворює контекст події GitHub (яка викликала цей workflow) у формат JSON
 # jq — це командний інструмент для обробки JSON даних, який форматуватиме та виводитиме JSON в читабельному вигляді.
-        
+# '|' -  вказує, що наступний текст буде багато рядковим, і кожний рядок буде збережений з новими рядками.
