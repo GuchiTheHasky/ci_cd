@@ -1,0 +1,18 @@
+name: Create a comment on new issue
+
+on:
+  issues:
+    types: [opened]
+
+jobs:
+  comment-with-actions:
+    runs-on: ubuntu-latest
+    steps: 
+      - name: "dump github context"
+        run: echo '${{ toJSON(github.event) }}' | jq 
+        shell: bash
+
+
+# echo '${{ toJSON(github.event) }}' перетворює контекст події GitHub (яка викликала цей workflow) у формат JSON
+# jq — це командний інструмент для обробки JSON даних, який форматуватиме та виводитиме JSON в читабельному вигляді.
+        
