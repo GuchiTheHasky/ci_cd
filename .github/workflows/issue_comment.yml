@@ -8,8 +8,8 @@ jobs:
   comment-with-actions:
     runs-on: ubuntu-latest
 
-    env: 
-      GIT_TOKEN: ${{ secrets.GIT_TOKEN }}
+    # env: 
+    #   GIT_TOKEN: ${{ secrets.GIT_TOKEN }}
     
     steps: 
       - name: "dump github context"
@@ -26,6 +26,8 @@ jobs:
             - Created by [create-or-update-comment][1]
             [1]: https://github.com/peter-evans/create-or-update-comment
           reactions: '+1'
+        env: 
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Update comment
         uses: peter-evans/create-or-update-comment@v4
@@ -34,6 +36,8 @@ jobs:
           body: |
             **Edit:** Some additional info
           reactions: eyes
+        env: 
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Add reactions
         uses: peter-evans/create-or-update-comment@v4
@@ -43,6 +47,8 @@ jobs:
             heart
             hooray
             laugh
+        env: 
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       
 
 
